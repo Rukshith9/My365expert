@@ -1,4 +1,4 @@
-import NotFound from "@/components/NotFound";
+import NotFoundComp from "@/components/NotFoundComp";
 import HeroSub from "@/components/SharedComponents/HeroSub";
 import { Metadata } from "next";
 
@@ -13,12 +13,12 @@ const ErrorPage = () => {
   ];
   return (
     <>
-      <HeroSub
+      {/* <HeroSub
         title="404"
         description="We Can't Seem to Find The Page You're Looking For"
         breadcrumbLinks={breadcrumbLinks}
       />
-      <NotFound />
+      <NotFoundComp /> */}
     </>
   );
 };
