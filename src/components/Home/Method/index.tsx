@@ -41,7 +41,11 @@ const Method = () => {
         >
           <motion.div {...TopAnimation} className="text-center">
             <h2 className="md:text-35 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white lg:max-w-full sm:max-w-75% mx-auto">
-              <span className="text-primary max-w-max ml-2">Our mission : </span>
+              <span className="text-primary max-w-max ml-2">
+                Our mission
+              </span>
+            </h2>
+            <h2 className="md:text-35 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white lg:max-w-full sm:max-w-75% mx-auto">
               Help organization’s work smarter, operate safer, and grow
               confidently with Microsoft 365, Azure, and AI.
             </h2>

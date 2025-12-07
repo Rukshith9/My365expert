@@ -50,7 +50,7 @@ const Spend: FC = () => {
               The best way to
               <span className="text-primary ml-2">spend and save</span>
             </h2> */}
-            <p className="text-24 text-muted dark:text-white dark:text-opacity-70 lg:font-normal mx-1 lg:mx-4 mb-3">
+            <p className="sm:text-24 text-16 text-muted dark:text-white dark:text-opacity-70 lg:font-normal mx-1 lg:mx-4 mb-3">
               My365Expert helps businesses maximize the value of Microsoft 365,
               Azure, AI, and Copilot. We build secure, modern digital workplaces
               using tools such as Intune, SharePoint, Teams, Entra ID, and
