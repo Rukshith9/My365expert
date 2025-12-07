@@ -41,17 +41,20 @@ const Method = () => {
         >
           <motion.div {...TopAnimation} className="text-center">
             <h2 className="md:text-35 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white lg:max-w-full sm:max-w-75% mx-auto">
-              Many ways to manage your
               <span className="text-primary max-w-max ml-2">
-                online payment
+                Our mission
               </span>
             </h2>
-            <p className="font-medium xl:max-w-45% lg:max-w-50% md:max-w-75% text-17 mx-auto text-muted dark:text-white dark:text-opacity-70">
+            <h2 className="md:text-35 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white lg:max-w-full sm:max-w-75% mx-auto">
+              Help organization’s work smarter, operate safer, and grow
+              confidently with Microsoft 365, Azure, and AI.
+            </h2>
+            {/* <p className="font-medium xl:max-w-45% lg:max-w-50% md:max-w-75% text-17 mx-auto text-muted dark:text-white dark:text-opacity-70">
               Embed powerful financial features into your product, Build in
               minutes, launch in weeks.
-            </p>
+            </p> */}
           </motion.div>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4 mt-11">
+          {/* <div className="grid grid-cols-2 gap-x-8 gap-y-4 mt-11">
             <motion.div {...TopAnimation} className="col-span-2">
               <div className="bg-white dark:bg-darkmode rounded-2xl">
                 <div className="grid xl:grid-cols-2 xl:gap-10">
@@ -193,7 +196,7 @@ const Method = () => {
                 </div>
               </motion.div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

@@ -74,57 +74,22 @@ export const BeneifitImage = [
 ];
 
 // Footer Links
-export const footerLinks: { link: string }[] = [
+export const footerLinks: { link: string; name: string }[] = [
   {
-    link: "Online Payments",
+    link: "/",
+    name: "Home",
   },
   {
-    link: "Financial Projections",
+    link: "/services",
+    name: "Services",
   },
   {
-    link: "Bookkeeping",
+    link: "/blog",
+    name: "Blog",
   },
   {
-    link: "Banking",
-  },
-  {
-    link: "Documentation",
-  },
-  {
-    link: "Integrations",
-  },
-  {
-    link: "API Reference",
-  },
-  {
-    link: "Support",
-  },
-  {
-    link: "Help",
-  },
-  {
-    link: "Infrastructure",
-  },
-  {
-    link: "Certifications",
-  },
-  {
-    link: "Licenses",
-  },
-  {
-    link: "Terms and conditions",
-  },
-  {
-    link: "Legal",
-  },
-  {
-    link: "Privacy",
-  },
-  {
-    link: "Cookies",
-  },
-  {
-    link: "Disclaimer",
+    link: "/contact",
+    name: "Contact Us",
   },
 ];
 
@@ -152,4 +117,3 @@ export const review = [
     gplayrating: "4.5",
   },
 ];
-

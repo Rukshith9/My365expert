@@ -17,13 +17,13 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <Payment />
-      <Benefit />
+      {/* <Payment /> */}
+      {/* <Benefit /> */}
       <Spend />
       <Method />
-      <Mobile />
+      {/* <Mobile />
       <Search />
-      <Solution />
+      <Solution /> */}
       
     </main>
   );

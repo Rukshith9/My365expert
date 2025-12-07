@@ -46,16 +46,24 @@ const Spend: FC = () => {
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
         <div ref={ref}>
           <motion.div {...TopAnimation} className="text-center">
-            <h2 className="md:text-35 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white">
+            {/* <h2 className="md:text-35 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white">
               The best way to
               <span className="text-primary ml-2">spend and save</span>
-            </h2>
-            <p className="text-17 text-muted dark:text-white dark:text-opacity-70 lg:font-medium mx-1 lg:mx-64 mb-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </h2> */}
+            <p className="sm:text-24 text-16 text-muted dark:text-white dark:text-opacity-70 lg:font-normal mx-1 lg:mx-4 mb-3">
+              My365Expert helps businesses maximize the value of Microsoft 365,
+              Azure, AI, and Copilot. We build secure, modern digital workplaces
+              using tools such as Intune, SharePoint, Teams, Entra ID, and
+              Microsoft Defender, supported by Azure capabilities including
+              Azure Backup, Virtual Machines, cloud identity, and advanced
+              security services. Our solutions ensure your environment is
+              resilient, compliant, and effortless to manage.
             </p>
           </motion.div>
-          <motion.div {...bottomAnimation} className="flex justify-center items-center">
+          <motion.div
+            {...bottomAnimation}
+            className="flex justify-center items-center"
+          >
             <div className="relative overflow-hidden mt-14">
               <Image
                 src="/images/spend/spend.png"
