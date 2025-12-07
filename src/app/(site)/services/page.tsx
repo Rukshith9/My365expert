@@ -20,8 +20,8 @@ const Services = () => {
         breadcrumbLinks={breadcrumbLinks}
       />
       <Payment />
-      <Benefit />
-      <Spend />
+      {/* <Benefit /> */}
+      {/* <Spend /> */}
     </>
   );
 };

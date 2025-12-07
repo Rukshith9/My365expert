@@ -24,21 +24,39 @@ export const Heroimage = [
 export const PaymentImage = [
   {
     image: "/images/payment/user.svg",
-    title: "Create an account",
+    title: "Microsoft 365 Setup, Migration & Optimization",
     details:
-      "Mobile app made easy check out across the web and in apps without having to enter any payment information.",
+      "Complete tenant deployment, domain and email setup, migration services, and ongoing Microsoft 365 optimization.",
   },
   {
     image: "/images/payment/user.svg",
-    title: "Verify your identity",
+    title: "AI & Copilot Enablement",
     details:
-      "Mobile app made easy check out across the web and in apps without having to enter any payment information.",
+      "Implement Microsoft Copilot, streamline workflows with AI, integrate business apps, and prepare your organization for AI-driven productivity.",
   },
   {
     image: "/images/payment/user.svg",
-    title: "Link your bank account",
+    title: "Security, Compliance & Secure Score Improvement",
     details:
-      "Mobile app made easy check out across the web and in apps without having to enter any payment information.",
+      "Strengthening security with Zero Trust principles, Conditional Access, device compliance, Microsoft Defender, secure email configuration, and overall Secure Score enhancement.",
+  },
+  {
+    image: "/images/payment/user.svg",
+    title: "Intune Device Management & Modern Workplace",
+    details:
+      "Manage and secure devices with Intune, including enrollment, automation, app deployment, and modern endpoint policies across all major platforms",
+  },
+  {
+    image: "/images/payment/user.svg",
+    title: "Azure Cloud Services & Infrastructure",
+    details:
+      "Design and manage Azure environments, including cloud identity, virtual machines, data protection, cost optimization, and secure cloud infrastructure.",
+  },
+  {
+    image: "/images/payment/user.svg",
+    title: "SharePoint & Teams Workspace Design",
+    details:
+      "Create modern intranets, collaboration portals, workflow automation, and structured governance for Teams and SharePoint.",
   },
 ];
 
