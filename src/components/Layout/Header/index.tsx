@@ -6,8 +6,6 @@ import { headerData } from "../Header/Navigation/menuData";
 import Logo from "./Logo";
 import HeaderLink from "../Header/Navigation/HeaderLink";
 import MobileHeaderLink from "../Header/Navigation/MobileHeaderLink";
-import Signin from "@/components/Auth/SignIn";
-import SignUp from "@/components/Auth/SignUp";
 import { Icon } from "@iconify/react";
 import { useTheme } from "next-themes";
 
@@ -131,7 +129,7 @@ const Header: React.FC = () => {
                   className="bg-[url('/images/icon/closed.svg')] bg-no-repeat bg-contain w-5 h-5 absolute top-0 right-0 mr-8 mt-8 dark:invert"
                   aria-label="Close Sign In Modal"
                 ></button>
-                <Signin />
+              
               </div>
             </div>
           )}
@@ -156,7 +154,7 @@ const Header: React.FC = () => {
                   className="bg-[url('/images/icon/closed.svg')] bg-no-repeat bg-contain w-5 h-5 absolute top-0 right-0 mr-8 mt-8 dark:invert"
                   aria-label="Close Sign Up Modal"
                 ></button>
-                <SignUp />
+               
               </div>
             </div>
           )}
