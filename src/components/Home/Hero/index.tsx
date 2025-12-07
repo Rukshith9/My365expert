@@ -25,7 +25,7 @@ const Hero = () => {
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) relative z-1 md:max-w-(--breakpoint-md) px-4">
         <div className="grid grid-cols-12 items-center">
           <motion.div {...leftAnimation} className="lg:col-span-6 col-span-12">
-            <h1 className="md:text-50 sm:text-40 text-28 text-midnight_text dark:text-white lg:text-start mb-9 lg:w-full w-3/4">
+            <h1 className="md:text-50 sm:text-40 text-28 text-midnight_text dark:text-white lg:text-start text-center mb-9 lg:w-full w-full">
               Secure Workflows.
               <br />
               <span className="bg-border dark:bg-darkHeroBg  md:text-50 text-36 rounded-lg lg:text-start text-primary max-w-max">
@@ -34,11 +34,11 @@ const Hero = () => {
               <br />
               Powered by Microsoft 365 & Copilot
             </h1>
-            <p className="sm:text-19 text-16 text-muted dark:text-white dark:text-opacity-70 text-start lg:max-w-full sm:max-w-75%">
+            <p className="sm:text-19 text-16 text-muted dark:text-white dark:text-opacity-70 sm:text-start lg:max-w-full sm:max-w-75% text-center">
               My365Expert helps businesses maximize the value of Microsoft 365,
               Azure, AI, and Copilot.
             </p>
-            <div className="flex items-center mt-12 gap-11">
+            <div className="flex sm:flex-row flex-col items-center mt-12 gap-11 ">
               <div>
                 <Link
                   href="#"
