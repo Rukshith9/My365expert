@@ -25,18 +25,18 @@ const Hero = () => {
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) relative z-1 md:max-w-(--breakpoint-md) px-4">
         <div className="grid grid-cols-12 items-center">
           <motion.div {...leftAnimation} className="lg:col-span-6 col-span-12">
-            <h1 className="md:text-50 sm:text-40 text-28 text-midnight_text lg:text-start mb-9 lg:w-full w-3/4">
-              Quickest and easiest
+            <h1 className="md:text-50 sm:text-40 text-28 text-midnight_text dark:text-white lg:text-start mb-9 lg:w-full w-3/4">
+              Secure Workflows.
               <br />
               <span className="bg-border dark:bg-darkHeroBg  md:text-50 text-36 rounded-lg lg:text-start text-primary max-w-max">
-                online payment
+                Smarter AI.
               </span>
               <br />
-              platform for your product.
+              Powered by Microsoft 365 & Copilot
             </h1>
             <p className="sm:text-19 text-16 text-muted dark:text-white dark:text-opacity-70 text-start lg:max-w-full sm:max-w-75%">
-              Embed powerful financial features into your product, Build in
-              minutes, launch in weeks.
+              My365Expert helps businesses maximize the value of Microsoft 365,
+              Azure, AI, and Copilot.
             </p>
             <div className="flex items-center mt-12 gap-11">
               <div>
@@ -44,7 +44,7 @@ const Hero = () => {
                   href="#"
                   className="text-17 flex gap-2 items-center bg-primary text-white py-3 px-8 rounded-lg border border-primary hover:text-primary hover:bg-transparent"
                 >
-                  Get Started
+                  Book a consultation
                   <Icon
                     icon="solar:alt-arrow-right-linear"
                     width="13"
@@ -57,7 +57,7 @@ const Hero = () => {
                   href="#"
                   className="text-17 flex gap-2 items-center text-muted dark:text-white dark:text-opacity-70 hover:text-primary"
                 >
-                  See Features
+                  See Our Services
                   <Icon
                     icon="solar:alt-arrow-right-linear"
                     width="13"
@@ -68,10 +68,10 @@ const Hero = () => {
             </div>
 
             <div className="lg:my-28 my-12">
-              <p className="text-20 text-muted dark:text-white dark:text-opacity-70 text-start mb-7">
+              {/* <p className="text-20 text-muted dark:text-white dark:text-opacity-70 text-start mb-7">
                 Trusted by
-              </p>
-              <div className="flex space-x-6 justify-start w-full">
+              </p> */}
+              {/* <div className="flex space-x-6 justify-start w-full">
                 {Heroimage.map((item, index) => (
                   <Link key={index} href="/">
                     <Image
@@ -92,7 +92,7 @@ const Hero = () => {
                     />
                   </Link>
                 ))}
-              </div>
+              </div> */}
             </div>
           </motion.div>
           <motion.div
