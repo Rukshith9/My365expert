@@ -33,7 +33,7 @@ const Method = () => {
   };
 
   return (
-    <section className="dark:bg-darkmode overflow-hidden py-14">
+    <section className="dark:bg-darkmode overflow-hidden py-7">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
         <div
           ref={ref}

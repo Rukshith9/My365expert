@@ -8,6 +8,8 @@ import Method from "@/components/Home/Method";
 import Mobile from "@/components/Home/Mobile";
 import Search from "@/components/Home/Search";
 import Solution from "@/components/Home/Solution";
+import Services from "@/components/Home/Custome/Services";
+
 
 export const metadata: Metadata = {
   title: "Nicktio",
@@ -17,14 +19,15 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      {/* <Payment /> */}
+
       {/* <Benefit /> */}
       <Spend />
       <Method />
+     <Services />
+
       {/* <Mobile />
       <Search />
       <Solution /> */}
-      
     </main>
   );
 }
