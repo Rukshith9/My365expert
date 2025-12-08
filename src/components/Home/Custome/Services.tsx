@@ -1,13 +1,13 @@
 "use client";
-import { motion, useInView } from "motion/react";
-import { useRef } from "react";
+import React from "react";
 import { PaymentImage } from "@/app/api/data";
 import Image from "next/image";
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
 
-const Payment = () => {
+const Services = () => {
   const ref = useRef(null);
   const inView = useInView(ref);
-
   const TopAnimation = {
     initial: { y: "-100%", opacity: 0 },
     animate: inView ? { y: 0, opacity: 1 } : { y: "-100%", opacity: 0 },
@@ -20,45 +20,12 @@ const Payment = () => {
     transition: { duration: 1, delay: 0.4 + index * 0.4 },
   });
 
-  const paymentItems = [
-    "AI",
-    "Co-pilot",
-    "Security",
-    "Microsoft 365",
-    "Entra ID",
-    "Azure",
-  ];
-
   return (
-    <section className="dark:bg-darkmode py-14">
+    <section className="dark:bg-darkmode pb-14">
       <div
         ref={ref}
         className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4"
       >
-        <motion.div {...TopAnimation}>
-          <div className="px-4 lg:px-12">
-            <h2 className="text-center font-semibold md:text-35 sm:text-28 text-24 mb-8 text-midnight_text dark:text-white lg:mx-44">
-              Secure your cloud.
-              <span className="text-primary"> Automate with AI. </span>
-              Transform with Microsoft 365.
-            </h2>
-          </div>
-          <div className="flex flex-wrap justify-center gap-10">
-            {paymentItems.map((item, index) => (
-              <p
-                key={index}
-                className={`text-muted dark:text-white dark:text-opacity-70 md:text-18 text-base font-medium relative ${
-                  index !== paymentItems.length - 1
-                    ? "after:content-[''] after:absolute after:w-0.5 after:h-3/4 after:bg-muted after:rounded-full after:-right-5 after:top-0.5"
-                    : ""
-                }`}
-              >
-                {item}
-              </p>
-            ))}
-          </div>
-        </motion.div>
-
         <div className="flex justify-start sm:mt-20 mt-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-14 gap-8">
             {PaymentImage.map((item, index) => (
@@ -93,4 +60,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default Services;
