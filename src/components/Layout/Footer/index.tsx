@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { footerLinks } from "@/app/api/data";
