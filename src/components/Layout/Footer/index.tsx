@@ -5,7 +5,7 @@ import { footerLinks } from "@/app/api/data";
 
 const Footer = () => {
   return (
-    <footer className="pt-8 mt-14 bg-midnight_text relative after:content-[''] after:absolute after:bg-[url('/images/footer/bgline.png')] after:bg-no-repeat after:w-52 after:h-24 after:right-0 after:top-28 xl:after:block after:hidden">
+    <footer className="pt-8 mt-14 bg-midnight_text relative after:content-[''] after:absolute  after:bg-no-repeat after:w-52 after:h-24 after:right-0 after:top-28 xl:after:block after:hidden">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-2">
         <div className="flex lg:items-center justify-between lg:flex-row flex-col border-b border-dark_border pb-7 mb-8 ">
           <div className="flex sm:flex-nowrap flex-wrap gap-6">
@@ -46,7 +46,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="grid grid-cols-12 sm:mb-8 mb-8 pt-8 gap-4 relative before:content-[''] before:absolute before:w-20 before:h-20 before:bg-[url('/images/footer/bgcir.png')] before:bg-no-repeat before:-left-36 before:bottom-9 lg:before:block before:hidden">
+        <div className="grid grid-cols-12 sm:mb-8 mb-8 pt-8 gap-4 relative before:content-[''] before:absolute before:w-20 before:h-20  before:bg-no-repeat before:-left-36 before:bottom-9 lg:before:block before:hidden">
           <div className="md:col-span-2 col-span-6 mb-4 md:mb-0">
             <h4 className="text-18 text-white dark:text-white mb-3">
               Navigation
