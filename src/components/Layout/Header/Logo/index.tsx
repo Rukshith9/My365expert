@@ -16,10 +16,10 @@ const Logo: React.FC = () => {
       <Image
         src="/images/logo/logo1.svg"
         alt="logo"
-        width={180}
-        height={50}
+        width={250}
+        height={70}
         quality={100}
-        className="hidden dark:block"
+        className="hidden dark:block "
       />
     </Link>
   );
