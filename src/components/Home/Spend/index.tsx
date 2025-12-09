@@ -64,9 +64,9 @@ const Spend: FC = () => {
             {...bottomAnimation}
             className="flex justify-center items-center"
           >
-            <div className="relative overflow-hidden mt-14">
+            <div className="relative overflow-hidden">
               <Image
-                src="/images/home/home-banner.jpg"
+                src="/images/bg_images/services-banner.png"
                 alt="image"
                 width={550}
                 height={350}

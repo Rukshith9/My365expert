@@ -109,40 +109,14 @@ const Header: React.FC = () => {
             </svg>
           </button>
           <Link
-            href="#"
+            href="https://outlook.office.com/book/MY365Expert1@1clickitsolutions.com/?ismsaljsauthenabled"
             className="hidden lg:flex items-center bg-primary border border-primary hover:border-primary dark:text-white text-white px-4 py-2  gap-2 rounded-lg text-16 font-semibold hover:bg-transparent hover:text-primary dark:hover:text-primary"
-            onClick={() => {
-              setIsSignInOpen(true);
-            }}
+            target="_blank"
           >
             Book a consultation
             <Icon icon="solar:arrow-right-linear" width="24" height="24" />
           </Link>
-          
-          {/* <Link
-            href="#"
-            className="hidden lg:flex items-center border border-primary dark:hover:border-primary bg-transparent dark:text-primary text-primary  px-4 py-2  gap-2 rounded-lg text-16 font-semibold hover:bg-primary hover:text-white dark:hover:text-white"
-            onClick={() => {
-              setIsSignUpOpen(true);
-            }}
-          >
-            Sign Up
-            <Icon icon="solar:arrow-right-linear" width="24" height="24" />
-          </Link> */}
-          {/* {isSignUpOpen && (
-            <div
-              ref={signUpRef}
-              className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
-            >
-              <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-white px-8 py-14 text-center dark:bg-midnight_text">
-                <button
-                  onClick={() => setIsSignUpOpen(false)}
-                  className="bg-[url('/images/icon/closed.svg')] bg-no-repeat bg-contain w-5 h-5 absolute top-0 right-0 mr-8 mt-8 dark:invert"
-                  aria-label="Close Sign Up Modal"
-                ></button>
-              </div>
-            </div>
-          )} */}
+
           <button
             onClick={() => setNavbarOpen(!navbarOpen)}
             className="block lg:hidden p-2 rounded-lg"
