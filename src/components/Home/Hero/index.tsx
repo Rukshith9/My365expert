@@ -101,7 +101,7 @@ const Hero = () => {
             className="lg:col-span-6 col-span-12 pl-20 lg:block hidden"
           >
             <Image
-              src="/images/hero/hero-image.png"
+              src="/images/bg_images/main-banner.png"
               alt="image"
               width={498}
               height={651}
