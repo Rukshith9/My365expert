@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { validateEmail } from "@/utils/validateEmail";
+import { toast } from "react-toastify";
+import { useTheme } from "next-themes";
+import Loader from "@/components/Common/Loader";
+import { LoaderCircle } from "lucide-react";
 
 const ContactForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -11,8 +15,13 @@ const ContactForm = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const { theme } = useTheme();
+  const [isLoading, setIsLoading] = useState(false);
+
+  console.log("Current theme:", theme);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
     e.preventDefault();
     const newErrors: { [key: string]: string } = {};
 
@@ -28,6 +37,7 @@ const ContactForm = () => {
 
     if (Object.keys(newErrors).length > 0) {
       console.warn("Form has validation errors", newErrors);
+      setIsLoading(true);
       return;
     }
 
@@ -46,10 +56,14 @@ const ContactForm = () => {
       })
       .then(() => {
         console.log("Email sent successfully");
+        toast("Email sent successfully", {
+          theme: theme,
+        });
       })
       .catch((err) => {
         console.error("Failed to send email", err);
       });
+    setIsLoading(false);
   };
   return (
     <>
@@ -150,8 +164,12 @@ const ContactForm = () => {
                   <button
                     className="bg-primary rounded-lg text-white py-4 px-8 mt-4 inline-block hover:bg-blue-700"
                     type="submit"
+                    disabled={isLoading}
                   >
-                    Send
+                    Send{" "}
+                    {isLoading && (
+                      <LoaderCircle className="w-4 h-4 animate-spin" />
+                    )}
                   </button>
                 </div>
               </form>
