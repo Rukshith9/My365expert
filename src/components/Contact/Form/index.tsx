@@ -31,13 +31,25 @@ const ContactForm = () => {
       return;
     }
 
-    const data = {
-      firstName,
-      lastName,
-      email,
-      message,
-    };
+    const data = { firstName, lastName, email, message };
     console.log("Contact form submission:", data);
+
+    // Send to API route using Resend
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(await res.text());
+        return res.json();
+      })
+      .then(() => {
+        console.log("Email sent successfully");
+      })
+      .catch((err) => {
+        console.error("Failed to send email", err);
+      });
   };
   return (
     <>
