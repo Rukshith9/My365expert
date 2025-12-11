@@ -14,7 +14,7 @@ const Logo: React.FC = () => {
       />
 
       <Image
-        src="/images/logo/logo1.svg"
+        src="/images/footer/footer-logo-transparent-2.png"
         alt="logo"
         width={250}
         height={70}

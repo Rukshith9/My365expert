@@ -40,10 +40,16 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="grid grid-cols-12 sm:mb-8 mb-8 pt-8 gap-4 relative before:content-[''] before:absolute before:w-20 before:h-20  before:bg-no-repeat before:-left-36 before:bottom-9 lg:before:block before:hidden ">
+        <div className="grid grid-cols-12 sm:mb-8 mb-8 pt-4 gap-4 relative before:content-[''] before:absolute before:w-20 before:h-20  before:bg-no-repeat before:-left-36 before:bottom-9 lg:before:block before:hidden ">
           <div className="md:col-span-2 col-span-6 mb-4 md:mb-0">
-            <Image src={"/images/footer/footer-logo-white.png"} width={150} height={150} alt="footer-logo-dark" className="object-contain" />
-            <h4 className="text-18 text-white dark:text-white mb-3 mt-5">
+            <Image
+              src={"/images/footer/footer-logo-transparent-2.png"}
+              width={350}
+              height={150}
+              alt="footer-logo-dark"
+              className="object-contain"
+            />
+            <h4 className="text-18 text-white dark:text-white mb-3 mt-8">
               Navigation
             </h4>
             <ul>

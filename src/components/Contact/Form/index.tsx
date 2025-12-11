@@ -4,18 +4,24 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { validateEmail } from "@/utils/validateEmail";
+import { toast } from "react-toastify";
+import { useTheme } from "next-themes";
+import Loader from "@/components/Common/Loader";
+import { LoaderCircle } from "lucide-react";
 
 const ContactForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [specialist, setSpecialist] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const { theme } = useTheme();
+  const [isLoading, setIsLoading] = useState(false);
+
+  console.log("Current theme:", theme);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
     e.preventDefault();
     const newErrors: { [key: string]: string } = {};
 
@@ -26,26 +32,38 @@ const ContactForm = () => {
     if (!message.trim()) newErrors.message = "Message is required";
     // Specialist is currently commented out; validate only if enabled
     // if (!specialist) newErrors.specialist = "Please choose a specialist";
-    if (!date) newErrors.date = "Date is required";
-    if (!time) newErrors.time = "Time is required";
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
       console.warn("Form has validation errors", newErrors);
+      setIsLoading(true);
       return;
     }
 
-    const data = {
-      firstName,
-      lastName,
-      email,
-      message,
-      specialist,
-      date,
-      time,
-    };
+    const data = { firstName, lastName, email, message };
     console.log("Contact form submission:", data);
+
+    // Send to API route using Resend
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(await res.text());
+        return res.json();
+      })
+      .then(() => {
+        console.log("Email sent successfully");
+        toast("Email sent successfully", {
+          theme: theme,
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to send email", err);
+      });
+    setIsLoading(false);
   };
   return (
     <>
@@ -53,9 +71,6 @@ const ContactForm = () => {
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
           <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
             <div className="col-span-6">
-              <h2 className="max-w-72 text-40 font-bold mb-9">
-                Get Online Consultation
-              </h2>
               <form
                 className="flex flex-wrap w-full m-auto justify-between"
                 onSubmit={handleSubmit}
@@ -144,72 +159,17 @@ const ContactForm = () => {
                       </p>
                     )}
                   </div>
-                  {/* <div className="mx-0 my-2.5 flex-1">
-                    <label
-                      htmlFor="Specialist"
-                      className="pb-3 inline-block text-17"
-                    >
-                      Specialist*
-                    </label>
-                    <select
-                      className="w-full text-17 px-4 py-2.5 rounded-lg border-border dark:text-white border-solid dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0"
-                      id="specialist"
-                      name="specialist"
-                      value={specialist}
-                      onChange={(e) => setSpecialist(e.target.value)}
-                    >
-                      <option value="">Choose a specialist</option>
-                      <option value="Baking &amp; Pastry">
-                        Baking &amp; Pastry
-                      </option>
-                      <option value="Exotic Cuisine">Exotic Cuisine</option>
-                      <option value="French Desserts">French Desserts</option>
-                      <option value="Seafood &amp; Wine">
-                        Seafood &amp; Wine
-                      </option>
-                    </select>
-                  </div> */}
-                </div>
-                <div className="sm:flex gap-3 w-full">
-                  <div className="mx-0 my-2.5 flex-1">
-                    <label htmlFor="date" className="pb-3 inline-block text-17">
-                      Date*
-                    </label>
-                    <input
-                      className="w-full text-17 px-4 rounded-lg  py-2.5 outline-hidden dark:text-white dark:bg-transparent border-border border-solid border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0"
-                      type="date"
-                      id="date"
-                      name="date"
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                    />
-                    {errors.date && (
-                      <p className="text-red-500 text-14 mt-2">{errors.date}</p>
-                    )}
-                  </div>
-                  <div className="mx-0 my-2.5 flex-1">
-                    <label htmlFor="time" className="pb-3 inline-block text-17">
-                      Time*
-                    </label>
-                    <input
-                      className="w-full text-17 px-4 rounded-lg py-2.5 border-border outline-hidden dark:text-white dark:bg-transparent border-solid border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0"
-                      type="time"
-                      id="time"
-                      name="time"
-                      value={time}
-                      onChange={(e) => setTime(e.target.value)}
-                    />
-                    {errors.time && (
-                      <p className="text-red-500 text-14 mt-2">{errors.time}</p>
-                    )}
-                  </div>
                 </div>
                 <div className="mx-0 my-2.5 w-full">
                   <button
                     className="bg-primary rounded-lg text-white py-4 px-8 mt-4 inline-block hover:bg-blue-700"
                     type="submit"
+                    disabled={isLoading}
                   >
-                    Send
+                    Send{" "}
+                    {isLoading && (
+                      <LoaderCircle className="w-4 h-4 animate-spin" />
+                    )}
                   </button>
                 </div>
               </form>
