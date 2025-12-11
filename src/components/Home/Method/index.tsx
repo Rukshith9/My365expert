@@ -34,20 +34,18 @@ const Method = () => {
 
   return (
     <section className="dark:bg-darkmode overflow-hidden py-7">
-      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4 ">
         <div
           ref={ref}
-          className="dark:bg-midnight_text bg-heroBg rounded-3xl sm:px-20 px-5"
+          className="dark:bg-midnight_text bg-heroBg rounded-3xl sm:px-20 px-5 py-4"
         >
           <motion.div {...TopAnimation} className="text-center">
             <h2 className="md:text-35 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white lg:max-w-full sm:max-w-75% mx-auto">
-              <span className="text-primary max-w-max ml-2">
-                Our mission
-              </span>
+              <span className="text-primary max-w-max ml-2">Our mission</span>
             </h2>
-            <h2 className="md:text-35 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white lg:max-w-full sm:max-w-75% mx-auto">
-              Help organization’s work smarter, operate safer, and grow
-              confidently with Microsoft 365, Azure, and AI.
+            <h2 className="md:text-30 sm:text-28 text-24 text-midnight_text font-semibold mb-5 dark:text-white lg:max-w-full sm:max-w-75% mx-auto">
+              {`Help organization’s work smarter, operate safer, and grow
+              confidently with Microsoft 365, Azure, and AI.`}
             </h2>
             {/* <p className="font-medium xl:max-w-45% lg:max-w-50% md:max-w-75% text-17 mx-auto text-muted dark:text-white dark:text-opacity-70">
               Embed powerful financial features into your product, Build in
