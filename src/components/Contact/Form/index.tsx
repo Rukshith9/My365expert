@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { validateEmail } from "@/utils/validateEmail";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useTheme } from "next-themes";
 import Loader from "@/components/Common/Loader";
 import { LoaderCircle } from "lucide-react";
+import { Turnstile } from "next-turnstile";
 
 const ContactForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -17,6 +18,13 @@ const ContactForm = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const { theme } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
+
+  const [turnstileStatus, setTurnstileStatus] = useState<
+    "success" | "error" | "expired" | "required"
+  >("required");
+  const [error, setError] = useState<string | null>(null);
+
+  const turnstileRef = useRef<string>();
 
   console.log("Current theme:", theme);
 
@@ -37,7 +45,7 @@ const ContactForm = () => {
 
     if (Object.keys(newErrors).length > 0) {
       console.warn("Form has validation errors", newErrors);
-      setIsLoading(true);
+      setIsLoading(false);
       return;
     }
 
@@ -161,10 +169,32 @@ const ContactForm = () => {
                   </div>
                 </div>
                 <div className="mx-0 my-2.5 w-full">
+                  <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    retry="auto"
+                    refreshExpired="auto"
+                    sandbox={process.env.NODE_ENV === "development"}
+                    onError={() => {
+                      setTurnstileStatus("error");
+                      setError("Security check failed. Please try again.");
+                    }}
+                    onExpire={() => {
+                      setTurnstileStatus("expired");
+                      setError("Security check expired. Please verify again.");
+                    }}
+                    onLoad={() => {
+                      setTurnstileStatus("required");
+                      setError(null);
+                    }}
+                    onVerify={(token) => {
+                      setTurnstileStatus("success");
+                      setError(null);
+                    }}
+                  />
                   <button
-                    className="bg-primary rounded-lg text-white py-4 px-8 mt-4 inline-block hover:bg-blue-700"
+                    className="bg-primary disabled:bg-primary/50 rounded-lg text-white py-4 px-8 mt-4 inline-block hover:bg-blue-700"
                     type="submit"
-                    disabled={isLoading}
+                    disabled={isLoading && turnstileStatus !== "success"}
                   >
                     Send{" "}
                     {isLoading && (
