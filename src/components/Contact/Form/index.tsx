@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { validateEmail } from "@/utils/validateEmail";
 import { toast } from "react-toastify";
 import { useTheme } from "next-themes";
-import Loader from "@/components/Common/Loader";
 import { LoaderCircle } from "lucide-react";
 import { Turnstile } from "next-turnstile";
 

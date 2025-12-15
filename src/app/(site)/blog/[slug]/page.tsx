@@ -95,7 +95,7 @@ export default async function Post({ params }: any) {
               </h2>
             </div>
             <div className="flex items-center md:justify-center justify-start gap-6 col-span-4 pt-4 md:pt-0">
-              <Image
+              {/* <Image
                 src={post.authorImage}
                 alt="image"
                 className="bg-no-repeat bg-contain inline-block rounded-full w-20! h-20!"
@@ -103,7 +103,7 @@ export default async function Post({ params }: any) {
                 height={40}
                 layout="responsive"
                 quality={100}
-              />
+              /> */}
               <div className="">
                 <span className="text-[22px] leading-tight font-bold text-midnight_text dark:text-white">
                   Silicaman
