@@ -23,14 +23,14 @@ const ContactForm = () => {
     "success" | "error" | "expired" | "required"
   >("required");
   const [error, setError] = useState<string | null>(null);
-
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const turnstileRef = useRef<string>();
 
   console.log("Current theme:", theme);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    setIsLoading(true);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     const newErrors: { [key: string]: string } = {};
 
     if (!firstName.trim()) newErrors.firstName = "First name is required";
@@ -49,29 +49,32 @@ const ContactForm = () => {
       return;
     }
 
-    const data = { firstName, lastName, email, message };
+    const data = { firstName, lastName, email, message, turnstileToken };
     console.log("Contact form submission:", data);
 
     // Send to API route using Resend
-    fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then(async (res) => {
-        if (!res.ok) throw new Error(await res.text());
-        return res.json();
-      })
-      .then(() => {
-        console.log("Email sent successfully");
-        toast("Email sent successfully", {
-          theme: theme,
-        });
-      })
-      .catch((err) => {
-        console.error("Failed to send email", err);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
-    setIsLoading(false);
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || "Failed to send email");
+      }
+
+      await res.json();
+      console.log("Email sent successfully");
+      toast("Email sent successfully", {
+        theme: theme,
+      });
+    } catch (err) {
+      console.error("Failed to send email", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <>
@@ -177,24 +180,28 @@ const ContactForm = () => {
                     onError={() => {
                       setTurnstileStatus("error");
                       setError("Security check failed. Please try again.");
+                      setTurnstileToken(null);
                     }}
                     onExpire={() => {
                       setTurnstileStatus("expired");
                       setError("Security check expired. Please verify again.");
+                      setTurnstileToken(null);
                     }}
                     onLoad={() => {
                       setTurnstileStatus("required");
                       setError(null);
+                      setTurnstileToken(null);
                     }}
                     onVerify={(token) => {
                       setTurnstileStatus("success");
                       setError(null);
+                      setTurnstileToken(token);
                     }}
                   />
                   <button
                     className="bg-primary disabled:bg-primary/50 rounded-lg text-white py-4 px-8 mt-4 inline-block hover:bg-blue-700"
                     type="submit"
-                    disabled={isLoading && turnstileStatus !== "success"}
+                    disabled={isLoading || turnstileStatus !== "success"}
                   >
                     Send{" "}
                     {isLoading && (
