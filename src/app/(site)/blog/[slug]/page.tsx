@@ -77,25 +77,25 @@ export default async function Post({ params }: any) {
 
   return (
     <>
-      <section className="relative pt-44 z-1 pb-20 dark:bg-dark dark:bg-darkmode">
+      <section className="relative pt-44 z-1 pb- dark:bg-dark dark:bg-darkmode">
         <div className="w-full h-full absolute -z-1 bg-heroBg rounded-b-[119px] -left-1/4 top-0 dark:bg-search"></div>
         <div className="container lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) mx-auto px-4">
           <div className="grid md:grid-cols-12 grid-cols-1 items-center">
             <div className="col-span-8">
               <div className="flex flex-col sm:flex-row">
-                <span className="text-base text-midnight_text font-medium dark:text-white pr-7 border-r border-solid border-grey dark:border-white w-fit">
+                {/* <span className="text-base text-midnight_text font-medium dark:text-white pr-7 border-r border-solid border-grey dark:border-white w-fit">
                   {format(new Date(post.date), "dd MMM yyyy")}
-                </span>
-                <span className="text-base text-midnight_text font-medium dark:text-white sm:pl-7 pl-0 w-fit">
+                </span> */}
+                {/* <span className="text-base text-midnight_text font-medium dark:text-white sm:pl-7 pl-0 w-fit">
                   13 Comments
-                </span>
+                </span> */}
               </div>
-              <h2 className="text-midnight_text dark:text-white text-[40px] leading-tight font-bold pt-7">
+              <h2 className="text-midnight_text dark:text-white text-[40px] leading-tight font-bold pt-3">
                 {post.title}
               </h2>
             </div>
             <div className="flex items-center md:justify-center justify-start gap-6 col-span-4 pt-4 md:pt-0">
-              <Image
+              {/* <Image
                 src={post.authorImage}
                 alt="image"
                 className="bg-no-repeat bg-contain inline-block rounded-full w-20! h-20!"
@@ -103,13 +103,13 @@ export default async function Post({ params }: any) {
                 height={40}
                 layout="responsive"
                 quality={100}
-              />
-              <div className="">
+              /> */}
+              {/* <div className="">
                 <span className="text-[22px] leading-tight font-bold text-midnight_text dark:text-white">
                   Silicaman
                 </span>
                 <p className="text-xl text-gray dark:text-white">Author</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ export default async function Post({ params }: any) {
               </div>
               <div className="-mx-4 flex flex-wrap">
                 <div className="w-full px-4 lg:w-8/12">
-                  <div className="blog-details markdown xl:pr-10">
+                  <div className="blog-details markdown xl:pr-10 text-black dark:text-white">
                     <div dangerouslySetInnerHTML={{ __html: content }}></div>
                   </div>
                 </div>
