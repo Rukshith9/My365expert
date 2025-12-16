@@ -130,7 +130,7 @@ export default async function Post({ params }: any) {
               </div>
               <div className="-mx-4 flex flex-wrap">
                 <div className="w-full px-4 lg:w-8/12">
-                  <div className="blog-details markdown xl:pr-10">
+                  <div className="blog-details markdown xl:pr-10 text-black dark:text-white">
                     <div dangerouslySetInnerHTML={{ __html: content }}></div>
                   </div>
                 </div>
