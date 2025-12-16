@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import Breadcrumb from "@/components/Breadcrumb";
 import { BreadcrumbLink } from "@/types/breadcrumb";
 
 interface HeroSubProps {
@@ -16,7 +15,6 @@ const HeroSub: FC<HeroSubProps> = ({ title, breadcrumbLinks }) => {
           <h2 className="text-midnight_text text-50 relative font-bold dark:text-white ">
             {title}
           </h2>
-          <Breadcrumb links={breadcrumbLinks} />
         </div>
       </section>
   );
