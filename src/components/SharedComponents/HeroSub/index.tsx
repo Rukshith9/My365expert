@@ -16,7 +16,7 @@ const HeroSub: FC<HeroSubProps> = ({ title, breadcrumbLinks }) => {
           <h2 className="text-midnight_text text-50 relative font-bold dark:text-white ">
             {title}
           </h2>
-          <Breadcrumb links={breadcrumbLinks} />
+          {/* <Breadcrumb links={breadcrumbLinks} /> */}
         </div>
       </section>
   );
