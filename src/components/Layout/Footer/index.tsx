@@ -49,10 +49,8 @@ const Footer = () => {
               alt="footer-logo-dark"
               className="object-contain"
             />
-            <h4 className="text-18 text-white dark:text-white mb-3 mt-8">
-              Navigation
-            </h4>
-            <ul>
+
+            <ul className="mt-4">
               {footerLinks.map((item, index) => (
                 <li key={index} className="pb-3">
                   <Link
