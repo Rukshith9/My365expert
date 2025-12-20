@@ -230,7 +230,7 @@ const ContactForm = () => {
                 height={0}
                 quality={100}
                 style={{ width: "100%", height: "auto" }}
-                className="bg-no-repeat bg-contain"
+                className="bg-no-repeat bg-contain z-999 relative sm:mt-[-100px] mt-0"
               />
             </div>
           </div>
