@@ -81,7 +81,7 @@ export default async function Post({ params }: any) {
         <div className="w-full h-full absolute -z-1 bg-heroBg rounded-b-[119px] -left-1/4 top-0 dark:bg-search"></div>
         <div className="container lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) mx-auto px-4">
           <div className="grid md:grid-cols-12 grid-cols-1 items-center">
-            <div className="col-span-8">
+            <div className="col-span-12">
               <div className="flex flex-col sm:flex-row">
                 {/* <span className="text-base text-midnight_text font-medium dark:text-white pr-7 border-r border-solid border-grey dark:border-white w-fit">
                   {format(new Date(post.date), "dd MMM yyyy")}
@@ -90,7 +90,7 @@ export default async function Post({ params }: any) {
                   13 Comments
                 </span> */}
               </div>
-              <h2 className="text-midnight_text dark:text-white text-[40px] leading-tight font-bold pt-3">
+              <h2 className="text-midnight_text dark:text-white text-[40px] leading-tight font-bold pt-3 text-center">
                 {post.title}
               </h2>
             </div>
@@ -129,12 +129,12 @@ export default async function Post({ params }: any) {
                 />
               </div>
               <div className="-mx-4 flex flex-wrap">
-                <div className="w-full px-4 lg:w-8/12">
+                <div className="w-full px-4 lg:w-full">
                   <div className="blog-details markdown xl:pr-10 text-black dark:text-white">
                     <div dangerouslySetInnerHTML={{ __html: content }}></div>
                   </div>
                 </div>
-                <div className="w-full px-4 lg:w-4/12">
+                {/* <div className="w-full px-4 lg:w-4/12">
                   <div>
                     <div className="-mx-4 mb-8 flex flex-col">
                       <div className="w-full py-12 px-11 bg-white dark:bg-dark_b shadow-lg border-b-2 border-border dark:border-dark_border rounded-t-lg">
@@ -228,7 +228,7 @@ export default async function Post({ params }: any) {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
