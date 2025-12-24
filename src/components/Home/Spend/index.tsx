@@ -62,7 +62,7 @@ const Spend: FC = () => {
           </motion.div>
           <motion.div
             {...bottomAnimation}
-            className="flex justify-center items-center"
+            className="flex justify-center items-center mt-20"
           >
             <div className="relative overflow-hidden">
               <Image
