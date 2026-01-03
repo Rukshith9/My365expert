@@ -5,7 +5,9 @@ import React from "react";
 import HeroSub from "@/components/SharedComponents/HeroSub";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Contact | MY365EXPERT",
+  title: "Contact My365Expert | Free Microsoft 365 Consultation",
+  description:
+    "Talk to a Microsoft 365 security expert. Book a free consultation to improve security, compliance, and AI readiness.",
 };
 
 const page = () => {

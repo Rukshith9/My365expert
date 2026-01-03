@@ -2,7 +2,9 @@ import HeroSub from "@/components/SharedComponents/HeroSub";
 import Payment from "@/components/Home/Payment";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Services | MY365EXPERT",
+  title: "Microsoft 365 Security & Compliance Services | My365Expert",
+  description:
+    "Expert Microsoft 365 security assessments, compliance setup, and risk mitigation. Protect your data and users with My365Expert.",
 };
 
 const Services = () => {
@@ -18,8 +20,6 @@ const Services = () => {
         breadcrumbLinks={breadcrumbLinks}
       />
       <Payment />
-      {/* <Benefit /> */}
-      {/* <Spend /> */}
     </>
   );
 };

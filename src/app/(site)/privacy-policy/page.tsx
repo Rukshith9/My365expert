@@ -3,7 +3,9 @@ import { Metadata } from "next";
 import HeroSub from "@/components/SharedComponents/HeroSub";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | MY365EXPERT",
+  title: "Privacy Policy | My365Expert",
+  description:
+    "Learn how My365Expert collects, uses, and protects your personal information when you interact with our services.",
 };
 
 const PrivacyPolicy = () => {
