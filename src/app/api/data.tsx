@@ -109,6 +109,10 @@ export const footerLinks: { link: string; name: string }[] = [
     link: "/contact",
     name: "Contact Us",
   },
+  {
+    link: "/privacy-policy",
+    name: "Privacy Policy",
+  },
 ];
 
 // Perks
