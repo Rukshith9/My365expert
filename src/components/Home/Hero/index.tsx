@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import { Heroimage } from "@/app/api/data";
 
+const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL;
+
 const Hero = () => {
   const leftAnimation = {
     initial: { x: "-100%", opacity: 0 },
@@ -41,7 +43,7 @@ const Hero = () => {
             <div className="flex sm:flex-row flex-col items-center mt-12 gap-11 ">
               <div>
                 <Link
-                  href="https://outlook.office.com/book/MY365Expert1@1clickitsolutions.com/?ismsaljsauthenabled"
+                  href={BOOKING_URL || ""}
                   className="text-17 flex gap-2 items-center bg-primary text-white py-3 px-8 rounded-lg border border-primary hover:text-primary hover:bg-transparent"
                   target="_blank"
                 >

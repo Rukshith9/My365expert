@@ -9,6 +9,8 @@ import MobileHeaderLink from "../Header/Navigation/MobileHeaderLink";
 import { Icon } from "@iconify/react";
 import { useTheme } from "next-themes";
 
+const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL;
+
 const Header: React.FC = () => {
   const pathUrl = usePathname();
   const { theme, setTheme } = useTheme();
@@ -109,7 +111,7 @@ const Header: React.FC = () => {
             </svg>
           </button>
           <Link
-            href="https://outlook.office.com/book/MY365Expert1@1clickitsolutions.com/?ismsaljsauthenabled"
+            href={BOOKING_URL || ""}
             className="hidden lg:flex items-center bg-primary border border-primary hover:border-primary dark:text-white text-white px-4 py-2  gap-2 rounded-lg text-16 font-semibold hover:bg-transparent hover:text-primary dark:hover:text-primary"
             target="_blank"
           >
