@@ -1,16 +1,9 @@
 import React from "react";
 import BlogCard from "@/components/SharedComponents/Blog/blogCard";
-import { getAllPosts } from "@/utils/markdown";
+import { getAllPublishedPosts } from "@/lib/blog";
 
-const BlogList: React.FC = () => {
-  const posts = getAllPosts([
-    "title",
-    "date",
-    "type",
-    "excerpt",
-    "coverImage",
-    "slug",
-  ]);
+const BlogList = async () => {
+  const posts = await getAllPublishedPosts();
 
   return (
     <section
