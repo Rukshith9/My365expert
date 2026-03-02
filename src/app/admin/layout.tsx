@@ -1,20 +1,7 @@
 "use client";
 
-import React, { useEffect, useState, createContext, useContext } from "react";
-
-type AdminContextType = {
-  secret: string;
-  setSecret: (s: string) => void;
-  logout: () => void;
-};
-
-const AdminContext = createContext<AdminContextType>({
-  secret: "",
-  setSecret: () => {},
-  logout: () => {},
-});
-
-export const useAdmin = () => useContext(AdminContext);
+import React, { useEffect, useState } from "react";
+import { AdminContext } from "./AdminContext";
 
 export default function AdminLayout({
   children,
