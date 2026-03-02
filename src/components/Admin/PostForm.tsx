@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { useAdmin } from "@/app/admin/layout";
+import { useAdmin } from "@/app/admin/AdminContext";
 import dynamic from "next/dynamic";
 import slugify from "slugify";
 import { Blog } from "@/types/blog";
