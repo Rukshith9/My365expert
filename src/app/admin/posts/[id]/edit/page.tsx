@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAdmin } from "@/app/admin/layout";
+import { useAdmin } from "@/app/admin/AdminContext";
 import { useParams } from "next/navigation";
 import PostForm from "@/components/Admin/PostForm";
 import { Blog } from "@/types/blog";
