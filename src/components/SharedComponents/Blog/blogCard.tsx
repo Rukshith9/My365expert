@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import { Blog } from "@/types/blog";
+import { BlogCardData } from "@/types/blog";
 import { format } from "date-fns";
 import Link from "next/link";
 
-const BlogCard = ({ blog }: { blog: Blog }) => {
+const BlogCard = ({ blog }: { blog: BlogCardData }) => {
   const { title, coverImage, type, excerpt, date, slug } = blog;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-9 items-center group">
