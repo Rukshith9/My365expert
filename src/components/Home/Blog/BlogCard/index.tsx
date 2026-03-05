@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import { Blog } from "@/types/blog";
+import { BlogCardData } from "@/types/blog";
 import { format } from "date-fns";
 import Link from "next/link";
 
-const BlogCard: FC<{ blog: Blog }> = ({ blog }) => {
+const BlogCard: FC<{ blog: BlogCardData }> = ({ blog }) => {
   const { title, coverImage, type, excerpt, date, slug } = blog;
   return (
     <Link href={`/blog/${slug}`} aria-label="blog cover" className="group">

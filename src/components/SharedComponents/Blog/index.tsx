@@ -2,16 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import BlogCard from "./blogCard";
-import { getAllPosts } from "@/utils/markdown";
+import { getAllPublishedPosts } from "@/lib/blog";
 
-const Blog: React.FC = () => {
-  const posts = getAllPosts([
-    "title",
-    "date",
-    "excerpt",
-    "coverImage",
-    "slug",
-  ]).slice(0, 3);
+const Blog = async () => {
+  const allPosts = await getAllPublishedPosts();
+  const posts = allPosts.slice(0, 3);
 
   return (
     <section

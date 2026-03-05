@@ -1,27 +1,26 @@
-import { getAllPosts, getPostBySlug } from "@/utils/markdown";
+import { getPublishedPostBySlug, getAllPostSlugs } from "@/lib/blog";
 import markdownToHtml from "@/utils/markdownToHtml";
 import Image from "next/image";
-
+import { notFound } from "next/navigation";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({ params }: any) {
-  const data = await params;
-  const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
-  const post = getPostBySlug(data.slug, [
-    "title",
-    "author",
-    "content",
-    "metadata",
-  ]);
+export async function generateStaticParams() {
+  const slugs = await getAllPostSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const post = await getPublishedPostBySlug(slug);
 
   const siteName = process.env.SITE_NAME || "Your Site Name";
   const authorName = process.env.AUTHOR_NAME || "Your Author Name";
 
   if (post) {
-    const metadata = {
+    return {
       title: `${post.title || "Single Post Page"} | ${siteName}`,
       author: authorName,
       robots: {
@@ -37,8 +36,6 @@ export async function generateMetadata({ params }: any) {
         },
       },
     };
-
-    return metadata;
   } else {
     return {
       title: "Not Found",
@@ -60,17 +57,13 @@ export async function generateMetadata({ params }: any) {
   }
 }
 
-export default async function Post({ params }: any) {
-  const data = await params;
-  const posts = getAllPosts(["title", "date", "excerpt", "coverImage", "slug"]);
-  const post = getPostBySlug(data.slug, [
-    "title",
-    "author",
-    "authorImage",
-    "content",
-    "coverImage",
-    "date",
-  ]);
+export default async function Post({ params }: Props) {
+  const { slug } = await params;
+  const post = await getPublishedPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
 
   const content = await markdownToHtml(post.content || "");
 
@@ -119,7 +112,7 @@ export default async function Post({ params }: any) {
             <div className="w-full px-4">
               <div className="z-20 mb-16 h-150 overflow-hidden rounded-sm md:h-45">
                 <Image
-                  src={post.coverImage}
+                  src={post.cover_image}
                   alt="image"
                   width={1170}
                   height={766}

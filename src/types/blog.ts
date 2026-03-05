@@ -1,10 +1,22 @@
 export type Blog = {
-  map(arg0: (blog: { slug: React.Key | null | undefined; coverImage: string | import("next/dist/shared/lib/get-img-props").StaticImport; }) => import("react").JSX.Element): import("react").ReactNode;
-  id?: number;
-  title?: string;
-  type?: string;
-  slug?: string;
-  excerpt?: string;
-  coverImage?: string;
+  id: string;
+  title: string;
+  slug: string;
+  type: string;
+  excerpt: string;
+  cover_image: string;
+  content: string;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+// Mapped type used by card components (matches old field names)
+export type BlogCardData = {
+  title: string;
+  slug: string;
+  type: string;
+  excerpt: string;
+  coverImage: string;
   date: string;
 };

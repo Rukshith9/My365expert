@@ -1,18 +1,11 @@
 import React from "react";
 import BlogCard from "./BlogCard";
-import { getAllPosts } from "@/utils/markdown";
+import { getAllPublishedPosts } from "@/lib/blog";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
-const BlogSmall: React.FC = () => {
-  const posts = getAllPosts([
-    "title",
-    "date",
-    "type",
-    "excerpt",
-    "coverImage",
-    "slug",
-  ]);
+const BlogSmall = async () => {
+  const posts = await getAllPublishedPosts();
 
   return (
     <section className="dark:bg-darkmode overflow-x-hidden">
