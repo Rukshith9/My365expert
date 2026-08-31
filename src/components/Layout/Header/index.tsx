@@ -1,73 +1,69 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { headerData } from "../Header/Navigation/menuData";
 import Logo from "./Logo";
-import HeaderLink from "../Header/Navigation/HeaderLink";
 import MobileHeaderLink from "../Header/Navigation/MobileHeaderLink";
-import { Icon } from "@iconify/react";
-import { useTheme } from "next-themes";
 
 const Header: React.FC = () => {
   const pathUrl = usePathname();
-  const { theme, setTheme } = useTheme();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const navbarRef = useRef<HTMLDivElement>(null);
-  const signInRef = useRef<HTMLDivElement>(null);
-  const signUpRef = useRef<HTMLDivElement>(null);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
-
-  const handleScroll = () => setSticky(window.scrollY >= 80);
-  const handleClickOutside = (event: MouseEvent) => {
-    if (signInRef.current && !signInRef.current.contains(event.target as Node)) setIsSignInOpen(false);
-    if (signUpRef.current && !signUpRef.current.contains(event.target as Node)) setIsSignUpOpen(false);
-    if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node) && navbarOpen) setNavbarOpen(false);
-  };
 
   useEffect(() => {
+    const handleScroll = () => setSticky(window.scrollY > 12);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [navbarOpen, isSignInOpen, isSignUpOpen]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isSignInOpen || isSignUpOpen || navbarOpen ? "hidden" : "";
+    setNavbarOpen(false);
+  }, [pathUrl]);
+
+  useEffect(() => {
+    document.body.style.overflow = navbarOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [isSignInOpen, isSignUpOpen, navbarOpen]);
+  }, [navbarOpen]);
 
   return (
-    <header className={`fixed h-20 top-0 py-1 z-50 w-full bg-white transition-all ${sticky ? "shadow-lg" : "shadow-none"}`}>
-      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) flex justify-between lg:items-center xl:gap-16 lg:gap-8 px-4 py-4">
+    <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-200 ${sticky ? "border-slate-200 bg-white/95 shadow-sm backdrop-blur" : "border-transparent bg-white"}`}>
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-10">
         <Logo />
-        <nav className="hidden lg:flex grow items-center xl:justify-start justify-center space-x-10 text-17 text-midnight_text">
-          {headerData.map((item, index) => <HeaderLink key={index} item={item} />)}
+
+        <nav className="hidden items-center gap-8 lg:flex">
+          {headerData.map((item) => (
+            <Link key={item.label} href={item.href} className={`text-[15px] font-medium transition-colors ${pathUrl === item.href ? "text-[#2563eb]" : "text-slate-700 hover:text-[#2563eb]"}`}>
+              {item.label}
+            </Link>
+          ))}
         </nav>
-        <div className="flex items-center gap-4">
-          <button aria-label="Toggle theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="flex h-8 w-8 items-center justify-center text-body-color duration-300">
-            <svg viewBox="0 0 23 23" className="h-7 w-7"><path d="M16.6111 15.855C17.591 15.1394 18.3151 14.1979 18.7723 13.1623C16.4824 13.4065 14.1342 12.4631 12.6795 10.4711C11.2248 8.47905 11.0409 5.95516 11.9705 3.84818C10.8449 3.9685 9.72768 4.37162 8.74781 5.08719C5.7759 7.25747 5.12529 11.4308 7.29558 14.4028C9.46586 17.3747 13.6392 18.0253 16.6111 15.855Z" /></svg>
-          </button>
-          <Link href="/contact" className="hidden lg:flex items-center bg-primary border border-primary text-white px-4 py-2 gap-2 rounded-lg text-16 font-semibold hover:bg-transparent hover:text-primary">
-            Book a consultation <Icon icon="solar:arrow-right-linear" width="24" height="24" />
-          </Link>
-          <button onClick={() => setNavbarOpen(!navbarOpen)} className="block lg:hidden p-2 rounded-lg" aria-label="Toggle mobile menu">
-            <span className="block w-6 h-0.5 bg-black"></span><span className="block w-6 h-0.5 bg-black mt-1.5"></span><span className="block w-6 h-0.5 bg-black mt-1.5"></span>
-          </button>
+
+        <Link href="/contact" className="hidden items-center gap-2 rounded-md bg-[#2563eb] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1d4ed8] lg:inline-flex">
+          Book a consultation <span aria-hidden="true">→</span>
+        </Link>
+
+        <button onClick={() => setNavbarOpen(true)} className="rounded-md p-2 text-slate-800 lg:hidden" aria-label="Open menu" aria-expanded={navbarOpen}>
+          <span className="block h-0.5 w-6 bg-current" /><span className="mt-1.5 block h-0.5 w-6 bg-current" /><span className="mt-1.5 block h-0.5 w-6 bg-current" />
+        </button>
+      </div>
+
+      {navbarOpen && (
+        <div className="fixed inset-0 top-[76px] bg-white lg:hidden">
+          <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5 sm:px-8">
+            <span className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Menu</span>
+            <button onClick={() => setNavbarOpen(false)} className="p-2 text-slate-700" aria-label="Close menu">
+              <span className="block h-0.5 w-6 rotate-45 bg-current" /><span className="-mt-0.5 block h-0.5 w-6 -rotate-45 bg-current" />
+            </button>
+          </div>
+          <nav className="flex flex-col px-6 py-5 sm:px-8">
+            {headerData.map((item) => <MobileHeaderLink key={item.label} item={item} />)}
+            <Link href="/contact" className="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-[#2563eb] px-5 py-3.5 text-sm font-semibold text-white">Book a consultation →</Link>
+          </nav>
         </div>
-      </div>
-      <div ref={mobileMenuRef} className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white shadow-lg transform transition-transform duration-300 max-w-xs ${navbarOpen ? "translate-x-0" : "translate-x-full"}`}>
-        <div className="flex items-center justify-between p-4"><h2 className="text-lg font-bold text-midnight_text">Menu</h2><button onClick={() => setNavbarOpen(false)} aria-label="Close mobile menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button></div>
-        <nav className="flex flex-col items-start p-4">
-          {headerData.map((item, index) => <MobileHeaderLink key={index} item={item} />)}
-          <Link href="/contact" className="mt-4 w-full bg-primary text-white px-4 py-2 rounded-lg text-center">Book a consultation</Link>
-        </nav>
-      </div>
+      )}
     </header>
   );
 };
