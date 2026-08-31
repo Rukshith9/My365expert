@@ -6,62 +6,78 @@ import { ThemeProvider } from "next-themes";
 import ScrollToTop from "@/components/ScrollToTop";
 import { ToastContainer } from "react-toastify";
 import { Metadata } from "next";
+
 const dmsans = DM_Sans({ subsets: ["latin"] });
 
+const siteUrl = "https://www.my365expert.co";
+const title = "My365Expert | Microsoft 365, Azure & AI Security Consulting";
+const description =
+  "Practical Microsoft 365, Azure, SharePoint, Intune, Purview and AI security consulting for businesses in New Zealand and Australia.";
+
 export const metadata: Metadata = {
-  title: "My365Expert | Microsoft 365 Security, Compliance & AI Experts",
-  description:
-    "Secure, optimise, and future-proof your Microsoft 365 environment. My365Expert helps businesses improve security, compliance, and AI readiness. Free consultation available.",
-  icons: {
-    icon: [{ url: "/favicon.ico" }],
+  metadataBase: new URL(siteUrl),
+  title: { default: title, template: "%s | My365Expert" },
+  description,
+  keywords: [
+    "Microsoft 365 security consultant NZ",
+    "Azure security consultant NZ",
+    "Microsoft 365 security assessment",
+    "SharePoint security consultant",
+    "Microsoft Copilot security",
+    "AI security consultant NZ",
+  ],
+  alternates: { canonical: siteUrl },
+  robots: { index: true, follow: true },
+  icons: { icon: "/favicon.ico" },
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: "My365Expert",
+    locale: "en_NZ",
+    type: "website",
+    images: [{ url: "/images/social/og-image.png", width: 1800, height: 1600 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "My365Expert | Microsoft 365 Security, Compliance & AI Experts",
-    description:
-      "Secure, optimise, and future-proof your Microsoft 365 environment. My365Expert helps businesses improve security, compliance, and AI readiness. Free consultation available.",
+    title,
+    description,
     images: ["/images/social/og-image.png"],
-  },
-  openGraph: {
-    title: "My365Expert | Microsoft 365 Security, Compliance & AI Experts",
-    description:
-      "Secure, optimise, and future-proof your Microsoft 365 environment. My365Expert helps businesses improve security, compliance, and AI readiness. Free consultation available.",
-    images: [
-      {
-        url: "/images/social/og-image.png",
-        width: 800,
-        height: 600,
-      },
-      {
-        url: "/images/social/og-image.png",
-        width: 1800,
-        height: 1600,
-      },
-    ],
-    locale: "en-US",
-    type: "website",
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${dmsans.className}`}>
-        <ThemeProvider
-          attribute="class"
-          enableSystem={false}
-          defaultTheme="light"
-        >
+    <html lang="en-NZ" suppressHydrationWarning>
+      <body className={dmsans.className}>
+        <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
           <Header />
           {children}
           <Footer />
           <ScrollToTop />
           <ToastContainer />
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "My365Expert",
+              url: siteUrl,
+              description,
+              areaServed: ["New Zealand", "Australia"],
+              serviceType: [
+                "Microsoft 365 Security Consulting",
+                "Azure Security Consulting",
+                "SharePoint Security",
+                "Microsoft Purview Consulting",
+                "Microsoft Intune Security",
+                "AI and Copilot Security Consulting",
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );

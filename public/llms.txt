@@ -1,0 +1,23 @@
+# My365Expert
+
+My365Expert provides practical Microsoft 365, Azure, SharePoint, Microsoft Purview, Intune, Defender and AI/Copilot security consulting for businesses in New Zealand and Australia.
+
+## Services
+
+- Microsoft 365 & Azure Security Uplift: https://www.my365expert.co/services
+- SharePoint Security & Optimisation: https://www.my365expert.co/services
+- Microsoft Purview & Information Protection: https://www.my365expert.co/services
+- Endpoint & Intune Security: https://www.my365expert.co/services
+- Microsoft AI & Copilot Security: https://www.my365expert.co/services
+
+## Website
+
+- Home: https://www.my365expert.co/
+- Services: https://www.my365expert.co/services
+- Blog: https://www.my365expert.co/blog
+- Contact: https://www.my365expert.co/contact
+- Privacy Statement: https://www.my365expert.co/privacy-policy
+
+## Focus
+
+My365Expert helps organisations assess Microsoft cloud security, improve identity and access controls, review SharePoint permissions and information architecture, strengthen endpoint security, implement data protection controls, and prepare securely for Microsoft Copilot and AI agents.
