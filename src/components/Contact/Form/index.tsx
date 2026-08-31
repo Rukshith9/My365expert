@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import Image from "next/image";
+import React, { useState } from "react";
+import Link from "next/link";
 import { validateEmail } from "@/utils/validateEmail";
 import { toast } from "react-toastify";
 import { useTheme } from "next-themes";
@@ -17,226 +17,58 @@ const ContactForm = () => {
   const { theme } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  const [turnstileStatus, setTurnstileStatus] = useState<
-    "success" | "error" | "expired" | "required"
-  >("required");
-  const [error, setError] = useState<string | null>(null);
+  const [turnstileStatus, setTurnstileStatus] = useState<"success" | "error" | "expired" | "required">("required");
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const turnstileRef = useRef<string>();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     const newErrors: { [key: string]: string } = {};
-
     if (!firstName.trim()) newErrors.firstName = "First name is required";
     if (!lastName.trim()) newErrors.lastName = "Last name is required";
     if (!email.trim()) newErrors.email = "Email is required";
     else if (!validateEmail(email)) newErrors.email = "Enter a valid email";
     if (!message.trim()) newErrors.message = "Message is required";
-    // Specialist is currently commented out; validate only if enabled
-    // if (!specialist) newErrors.specialist = "Please choose a specialist";
-
     setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) { setIsLoading(false); return; }
 
-    if (Object.keys(newErrors).length > 0) {
-      console.warn("Form has validation errors", newErrors);
-      setIsLoading(false);
-      return;
-    }
-
-    const data = { firstName, lastName, email, message, turnstileToken };
-
-    // Send to API route using Resend
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Failed to send email");
-      }
-
+      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ firstName, lastName, email, message, turnstileToken }) });
+      if (!res.ok) throw new Error((await res.text()) || "Failed to send email");
       await res.json();
-      console.log("Email sent successfully");
-      toast("Email sent successfully", {
-        theme: theme,
-      });
+      toast("Message sent successfully", { theme });
       setSubmitted(true);
     } catch (err) {
       console.error("Failed to send email", err);
-    } finally {
-      setIsLoading(false);
-    }
+      toast("We couldn't send your message. Please try again.", { theme });
+    } finally { setIsLoading(false); }
   };
+
   return (
-    <>
-      <section className="dark:bg-darkmode pb-24">
-        <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
-          <div className="grid md:grid-cols-12 grid-cols-1 gap-8">
-            <div className="col-span-6">
-              {submitted ? (
-                <div className="w-full m-auto p-8 border border-border dark:border-dark_border rounded-xl bg-white dark:bg-transparent">
-                  <h3 className="text-2xl font-semibold text-center text-primary">
-                    Thank you !
-                  </h3>
-                  <p className="mt-3 text-18 font-semibold text-center">
-                    Your message has been sent successfully. Well get back to
-                    you shortly.
-                  </p>
-                </div>
-              ) : (
-                <form
-                  className="flex flex-wrap w-full m-auto justify-between"
-                  onSubmit={handleSubmit}
-                >
-                  <div className="sm:flex gap-3 w-full">
-                    <div className="mx-0 my-2.5 flex-1">
-                      <label
-                        htmlFor="first-name"
-                        className="pb-3 inline-block text-17"
-                      >
-                        First Name*
-                      </label>
-                      <input
-                        className="w-full text-17 px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
-                        type="text"
-                        id="first-name"
-                        name="firstName"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                      />
-                      {errors.firstName && (
-                        <p className="text-red-500 text-14 mt-2">
-                          {errors.firstName}
-                        </p>
-                      )}
-                    </div>
-                    <div className="mx-0 my-2.5 flex-1">
-                      <label
-                        htmlFor="last-name"
-                        className="pb-3 inline-block text-17"
-                      >
-                        Last Name*
-                      </label>
-                      <input
-                        className="w-full text-17 px-4 py-2.5 rounded-lg border-border dark:border-dark_border border-solid dark:text-white  dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
-                        type="text"
-                        id="last-name"
-                        name="lastName"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                      />
-                      {errors.lastName && (
-                        <p className="text-red-500 text-14 mt-2">
-                          {errors.lastName}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="sm:flex gap-3 w-full">
-                    <div className="mx-0 my-2.5 flex-1">
-                      <label
-                        htmlFor="email"
-                        className="pb-3 inline-block text-17"
-                      >
-                        Email address*
-                      </label>
-                      <input
-                        type="email"
-                        className="w-full text-17 px-4 py-2.5 rounded-lg border-border dark:border-dark_border border-solid dark:text-white  dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                      {errors.email && (
-                        <p className="text-red-500 text-14 mt-2">
-                          {errors.email}
-                        </p>
-                      )}
-                      <label
-                        htmlFor="message"
-                        className="pb-3 inline-block text-17 mt-4"
-                      >
-                        Message*
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        className="w-full text-17 px-4 py-2.5 rounded-lg border-border dark:border-dark_border border-solid dark:text-white dark:bg-transparent border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0 min-h-[120px]"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                      />
-                      {errors.message && (
-                        <p className="text-red-500 text-14 mt-2">
-                          {errors.message}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="mx-0 my-2.5 w-full">
-                    <Turnstile
-                      siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                      retry="auto"
-                      refreshExpired="auto"
-                      sandbox={process.env.NODE_ENV === "development"}
-                      onError={() => {
-                        setTurnstileStatus("error");
-                        setError("Security check failed. Please try again.");
-                        setTurnstileToken(null);
-                      }}
-                      onExpire={() => {
-                        setTurnstileStatus("expired");
-                        setError(
-                          "Security check expired. Please verify again."
-                        );
-                        setTurnstileToken(null);
-                      }}
-                      onLoad={() => {
-                        setTurnstileStatus("required");
-                        setError(null);
-                        setTurnstileToken(null);
-                      }}
-                      onVerify={(token) => {
-                        setTurnstileStatus("success");
-                        setError(null);
-                        setTurnstileToken(token);
-                      }}
-                    />
-                    <button
-                      className="bg-primary disabled:bg-primary/50 rounded-lg text-white flex py-4 px-8 mt-4 items-center gap-2 hover:bg-blue-700"
-                      type="submit"
-                      disabled={isLoading || turnstileStatus !== "success"}
-                    >
-                      Send{" "}
-                      {isLoading && (
-                        <LoaderCircle className="w-4 h-4 animate-spin" />
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
-            </div>
-            <div className="col-span-6">
-              <Image
-                src="/images/contact/contact.png"
-                alt="Contact"
-                width={800}
-                height={0}
-                quality={100}
-                style={{ width: "100%", height: "auto" }}
-                className="bg-no-repeat bg-contain z-999 relative sm:mt-[-100px] mt-0"
-              />
-            </div>
+    <section className="bg-white pb-16 pt-10 sm:pb-20 sm:pt-12">
+      <div className="mx-auto max-w-4xl px-6 sm:px-8 lg:px-10">
+        {submitted ? (
+          <div className="border border-slate-200 bg-[#f7f9fc] p-10 text-center sm:p-14">
+            <h2 className="text-2xl font-semibold text-slate-950">Thank you.</h2>
+            <p className="mt-3 text-slate-600">Your message has been sent successfully. We'll get back to you shortly.</p>
           </div>
-        </div>
-      </section>
-    </>
+        ) : (
+          <form className="border border-slate-200 p-6 sm:p-8 lg:p-10" onSubmit={handleSubmit}>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div><label htmlFor="first-name" className="mb-2 block text-sm font-medium text-slate-700">First name*</label><input className="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#2563eb]" type="text" id="first-name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />{errors.firstName && <p className="mt-2 text-sm text-red-500">{errors.firstName}</p>}</div>
+              <div><label htmlFor="last-name" className="mb-2 block text-sm font-medium text-slate-700">Last name*</label><input className="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#2563eb]" type="text" id="last-name" value={lastName} onChange={(e) => setLastName(e.target.value)} />{errors.lastName && <p className="mt-2 text-sm text-red-500">{errors.lastName}</p>}</div>
+            </div>
+            <div className="mt-5"><label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-700">Work email*</label><input type="email" className="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#2563eb]" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />{errors.email && <p className="mt-2 text-sm text-red-500">{errors.email}</p>}</div>
+            <div className="mt-5"><label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-700">How can we help?*</label><textarea id="message" className="min-h-[150px] w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#2563eb]" value={message} onChange={(e) => setMessage(e.target.value)} />{errors.message && <p className="mt-2 text-sm text-red-500">{errors.message}</p>}</div>
+            <div className="mt-6">
+              <Turnstile siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!} retry="auto" refreshExpired="auto" sandbox={process.env.NODE_ENV === "development"} onError={() => { setTurnstileStatus("error"); setTurnstileToken(null); }} onExpire={() => { setTurnstileStatus("expired"); setTurnstileToken(null); }} onLoad={() => { setTurnstileStatus("required"); setTurnstileToken(null); }} onVerify={(token) => { setTurnstileStatus("success"); setTurnstileToken(token); }} />
+              <p className="mt-4 max-w-2xl text-xs leading-5 text-slate-500">By submitting this form, you agree that My365Expert may collect and use the information you provide to respond to your enquiry. Please see our <Link href="/privacy-policy" className="font-medium text-[#2563eb] hover:underline">Privacy Statement</Link> for more information.</p>
+              <button className="mt-4 inline-flex items-center gap-2 bg-[#2563eb] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-50" type="submit" disabled={isLoading || turnstileStatus !== "success"}>Send message {isLoading && <LoaderCircle className="h-4 w-4 animate-spin" />}</button>
+            </div>
+          </form>
+        )}
+      </div>
+    </section>
   );
 };
 
