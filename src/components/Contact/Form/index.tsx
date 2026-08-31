@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import Link from "next/link";
 import { validateEmail } from "@/utils/validateEmail";
 import { toast } from "react-toastify";
 import { useTheme } from "next-themes";
@@ -18,7 +19,6 @@ const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [turnstileStatus, setTurnstileStatus] = useState<"success" | "error" | "expired" | "required">("required");
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const turnstileRef = useRef<string>();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,7 +60,11 @@ const ContactForm = () => {
             </div>
             <div className="mt-5"><label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-700">Work email*</label><input type="email" className="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#2563eb]" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />{errors.email && <p className="mt-2 text-sm text-red-500">{errors.email}</p>}</div>
             <div className="mt-5"><label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-700">How can we help?*</label><textarea id="message" className="min-h-[150px] w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#2563eb]" value={message} onChange={(e) => setMessage(e.target.value)} />{errors.message && <p className="mt-2 text-sm text-red-500">{errors.message}</p>}</div>
-            <div className="mt-6"><Turnstile siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!} retry="auto" refreshExpired="auto" sandbox={process.env.NODE_ENV === "development"} onError={() => { setTurnstileStatus("error"); setTurnstileToken(null); }} onExpire={() => { setTurnstileStatus("expired"); setTurnstileToken(null); }} onLoad={() => { setTurnstileStatus("required"); setTurnstileToken(null); }} onVerify={(token) => { setTurnstileStatus("success"); setTurnstileToken(token); }} /><button className="mt-4 inline-flex items-center gap-2 bg-[#2563eb] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-50" type="submit" disabled={isLoading || turnstileStatus !== "success"}>Send message {isLoading && <LoaderCircle className="h-4 w-4 animate-spin" />}</button></div>
+            <div className="mt-6">
+              <Turnstile siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!} retry="auto" refreshExpired="auto" sandbox={process.env.NODE_ENV === "development"} onError={() => { setTurnstileStatus("error"); setTurnstileToken(null); }} onExpire={() => { setTurnstileStatus("expired"); setTurnstileToken(null); }} onLoad={() => { setTurnstileStatus("required"); setTurnstileToken(null); }} onVerify={(token) => { setTurnstileStatus("success"); setTurnstileToken(token); }} />
+              <p className="mt-4 max-w-2xl text-xs leading-5 text-slate-500">By submitting this form, you agree that My365Expert may collect and use the information you provide to respond to your enquiry. Please see our <Link href="/privacy-policy" className="font-medium text-[#2563eb] hover:underline">Privacy Statement</Link> for more information.</p>
+              <button className="mt-4 inline-flex items-center gap-2 bg-[#2563eb] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-50" type="submit" disabled={isLoading || turnstileStatus !== "success"}>Send message {isLoading && <LoaderCircle className="h-4 w-4 animate-spin" />}</button>
+            </div>
           </form>
         )}
       </div>
