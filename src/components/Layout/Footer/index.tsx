@@ -31,6 +31,7 @@ const Footer = () => (
             <Link href="/" className="text-sm text-slate-400 hover:text-white">Home</Link>
             <Link href="/blog" className="text-sm text-slate-400 hover:text-white">Insights</Link>
             <Link href="/contact" className="text-sm text-slate-400 hover:text-white">Contact</Link>
+            <Link href="/privacy-policy" className="text-sm text-slate-400 hover:text-white">Privacy Statement</Link>
             <a href="https://www.linkedin.com/company/my365expert" target="_blank" rel="noreferrer" className="text-sm text-slate-400 hover:text-white">LinkedIn</a>
           </div>
         </div>
