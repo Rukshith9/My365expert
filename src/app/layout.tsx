@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import ScrollToTop from "@/components/ScrollToTop";
 import { ToastContainer } from "react-toastify";
 import { Metadata } from "next";
+import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
 
 const dmsans = DM_Sans({ subsets: ["latin"] });
 
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-NZ" suppressHydrationWarning>
       <body className={dmsans.className}>
         <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light">
+          <GoogleAnalytics />
           <Header />
           {children}
           <Footer />
