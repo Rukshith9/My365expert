@@ -42,7 +42,7 @@ export default function SecurityHealthCheckPage() {
           <div className="max-w-4xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563eb]">Microsoft Cloud Security</p>
             <h1 className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl dark:text-white">Get the security help your business actually needs.</h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-300">If you use Microsoft 365 or Azure but don't have a dedicated security specialist, it can be difficult to know what matters. We make that simple. Start with one area, combine multiple services, or ask us to assess the bigger picture.</p>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-300">Security doesn't have to be complicated. We focus on the Microsoft services and risks that matter to your business, then give you clear, practical steps to improve them.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact" className="inline-flex items-center justify-center rounded-md bg-[#2563eb] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#1d4ed8]">Book a Free 20-Minute Review →</Link>
               <Link href="#services" className="inline-flex items-center justify-center rounded-md border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-800 hover:bg-white dark:border-slate-700 dark:text-white dark:hover:bg-slate-900">See the 5 services</Link>
