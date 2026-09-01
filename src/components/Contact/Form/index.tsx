@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useTheme } from "next-themes";
 import { LoaderCircle } from "lucide-react";
 import { Turnstile } from "next-turnstile";
+import { trackEvent } from "@/components/Analytics/GoogleAnalytics";
 
 const ContactForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -38,6 +39,7 @@ const ContactForm = () => {
       await res.json();
       toast("Message sent successfully", { theme });
       setSubmitted(true);
+      trackEvent("generate_lead", { method: "contact_form", page: window.location.pathname });
     } catch (err) {
       console.error("Failed to send email", err);
       toast("We couldn't send your message. Please try again.", { theme });
