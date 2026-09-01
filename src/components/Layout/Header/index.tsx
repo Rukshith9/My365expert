@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Header: React.FC = () => {
   const pathUrl = usePathname();
@@ -39,6 +40,7 @@ const Header: React.FC = () => {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Link href="/contact" className="hidden items-center gap-2 rounded-md bg-[#2563eb] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1d4ed8] lg:inline-flex">Book a consultation <span aria-hidden="true">→</span></Link>
           <button onClick={() => setNavbarOpen(true)} className="rounded-md p-2 text-slate-800 dark:text-white lg:hidden" aria-label="Open menu" aria-expanded={navbarOpen}>
             <span className="block h-0.5 w-6 bg-current" /><span className="mt-1.5 block h-0.5 w-6 bg-current" /><span className="mt-1.5 block h-0.5 w-6 bg-current" />
@@ -48,6 +50,10 @@ const Header: React.FC = () => {
 
       {navbarOpen && <div className="fixed inset-0 top-[76px] overflow-y-auto bg-white dark:bg-slate-950 lg:hidden">
         <nav className="mx-auto flex max-w-7xl flex-col px-6 py-6 sm:px-8">
+          <div className="mb-4 flex items-center justify-between border-b border-slate-200 pb-4 dark:border-slate-800">
+            <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Appearance</span>
+            <ThemeToggle />
+          </div>
           <Link href="/" className="py-3 text-lg font-medium text-slate-800 dark:text-white">Home</Link>
           <Link href="/services" className="py-3 text-lg font-medium text-slate-800 dark:text-white">Services</Link>
           <Link href="/blog" className="py-3 text-lg font-medium text-slate-800 dark:text-white">Blog</Link>
