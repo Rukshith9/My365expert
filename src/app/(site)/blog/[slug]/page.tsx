@@ -55,6 +55,7 @@ export default async function Post({ params }: Props) {
   const seo = getBlogSeo(slug);
   const title = seo?.title ?? post.title;
   const description = seo?.description ?? post.excerpt;
+  const shortAnswer = post.shortAnswer ?? description;
   const serviceSlug = serviceByCategory[post.category] ?? "microsoft-365-azure-security";
   const relatedService = services.find((service) => service.slug === serviceSlug);
   const relatedPosts = blogPosts.filter((item) => item.slug !== post.slug && item.category === post.category).slice(0, 3);
@@ -104,6 +105,11 @@ export default async function Post({ params }: Props) {
         </header>
 
         <div className="mx-auto max-w-3xl px-6 py-14 sm:px-8 lg:py-20">
+          <section className="mb-10 rounded-xl border border-blue-100 bg-blue-50 p-6 dark:border-blue-900 dark:bg-slate-900" aria-label="Short answer">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2563eb]">Short answer</p>
+            <p className="mt-3 text-base leading-7 text-slate-700 dark:text-slate-200">{shortAnswer}</p>
+            {relatedService && <Link href={`/services/${relatedService.slug}`} className="mt-4 inline-block text-sm font-semibold text-[#2563eb] hover:underline">Related service: {relatedService.name} →</Link>}
+          </section>
           <div className="blog-details prose prose-slate max-w-none dark:prose-invert prose-headings:tracking-[-0.02em] prose-a:text-[#2563eb]"><div dangerouslySetInnerHTML={{ __html: html }} /></div>
 
           <section className="mt-14 rounded-xl border border-slate-200 bg-[#f7f9fc] p-7 dark:border-slate-800 dark:bg-slate-900">
