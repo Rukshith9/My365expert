@@ -50,6 +50,21 @@ export const blogSeo: Record<string, BlogSeo> = {
     description: "A practical cybersecurity guide for business leaders covering identity, data, cloud, endpoints, resilience, monitoring, third parties and AI.",
     keywords: ["cybersecurity for business", "SMB cybersecurity", "cybersecurity business leaders", "cloud security", "cyber resilience"],
   },
+  "microsoft-365-security-new-zealand-small-business": {
+    title: "Microsoft 365 Security for New Zealand Small Businesses",
+    description: "A practical Microsoft 365 security checklist for New Zealand small businesses covering identity, devices, data, sharing and incident readiness.",
+    keywords: ["Microsoft 365 security New Zealand", "Microsoft 365 security SMB", "Microsoft 365 security assessment NZ", "NZ small business cybersecurity"],
+  },
+  "microsoft-365-security-50-person-business": {
+    title: "How Should a 50-Person Business Secure Microsoft 365?",
+    description: "A practical Microsoft 365 security model for a 50-person business covering identity, devices, SharePoint, data protection and recovery.",
+    keywords: ["Microsoft 365 security 50 person business", "Microsoft 365 security SMB", "Microsoft 365 security assessment", "Microsoft 365 security NZ"],
+  },
+  "microsoft-copilot-security-new-zealand-business": {
+    title: "Microsoft Copilot Security for New Zealand Businesses",
+    description: "What New Zealand businesses should review before expanding Microsoft Copilot, including identity, SharePoint permissions, data governance and AI controls.",
+    keywords: ["Microsoft Copilot security NZ", "Copilot security New Zealand", "Microsoft 365 AI security", "Copilot readiness"],
+  },
 };
 
 export function getBlogSeo(slug: string) {
