@@ -6,6 +6,7 @@ export type BlogPost = {
   date: string;
   readTime: string;
   content: string;
+  shortAnswer?: string;
 };
 
 export const blogPosts: BlogPost[] = [
@@ -14,6 +15,7 @@ export const blogPosts: BlogPost[] = [
     slug: "microsoft-365-security-checklist-business",
     category: "M365 Security",
     excerpt: "A practical Microsoft 365 security checklist covering identity, Conditional Access, MFA, devices, email and data protection.",
+    shortAnswer: "A Microsoft 365 security review should cover identity, MFA, Conditional Access, devices, Defender, sharing, data protection and monitoring. For a small or mid-sized business, the priority is identifying the highest-risk gaps and turning them into a practical remediation plan.",
     date: "31 August 2026",
     readTime: "7 min read",
     content: `
@@ -71,6 +73,7 @@ A good Microsoft 365 security review should leave you with a clear understanding
     slug: "secure-microsoft-entra-id-smb",
     category: "Identity & Access",
     excerpt: "Practical ways to strengthen Microsoft Entra ID, privileged access and Conditional Access without creating unnecessary complexity.",
+    shortAnswer: "Small and mid-sized businesses should secure Microsoft Entra ID by protecting privileged accounts, enforcing strong authentication, using sensible Conditional Access, removing legacy authentication and regularly reviewing guests and external identities.",
     date: "27 August 2026",
     readTime: "6 min read",
     content: `
@@ -110,6 +113,7 @@ For a smaller organisation, the objective is not to reproduce a large enterprise
     slug: "sharepoint-permissions-security-problems",
     category: "SharePoint Security",
     excerpt: "Seven SharePoint permission issues that can expose business information, create unnecessary complexity and make Copilot adoption harder.",
+    shortAnswer: "The most common SharePoint security problems are excessive permissions, stale users and guests, broad sharing links, poor information architecture and unmanaged sensitive content. These issues should be reviewed before expanding Microsoft 365 Copilot use.",
     date: "22 August 2026",
     readTime: "7 min read",
     content: `
@@ -155,6 +159,7 @@ Start with an inventory of sites, owners, permissions, external sharing and sens
     slug: "microsoft-copilot-security-readiness",
     category: "AI & Copilot Security",
     excerpt: "Microsoft Copilot security starts with identity, permissions and data governance. Here is what to review before wider adoption.",
+    shortAnswer: "Before adopting Microsoft Copilot widely, businesses should review Microsoft 365 identity, SharePoint permissions, sensitive data, DLP and AI governance. Copilot follows existing access, so improving the underlying security and data governance comes first.",
     date: "18 August 2026",
     readTime: "7 min read",
     content: `
@@ -192,6 +197,7 @@ The most useful Copilot project often starts before Copilot itself. Clean up acc
     slug: "intune-security-baseline-business",
     category: "Endpoint Security",
     excerpt: "A practical starting point for Microsoft Intune security, device compliance, endpoint protection and Conditional Access.",
+    shortAnswer: "A practical Intune security baseline should start with device inventory, security configuration, compliance policies, Conditional Access and endpoint protection. Roll controls out through a pilot before enforcing them broadly.",
     date: "12 August 2026",
     readTime: "6 min read",
     content: `
@@ -229,6 +235,7 @@ A good Intune deployment is usually iterative. Start with a pilot group, measure
     slug: "microsoft-purview-dlp-starting-guide",
     category: "Purview & Information Protection",
     excerpt: "A practical introduction to Microsoft Purview Data Loss Prevention and how to approach DLP without creating unnecessary disruption.",
+    shortAnswer: "A business should start Microsoft Purview DLP by identifying its most sensitive information, defining meaningful classification, testing policies in audit or simulation mode and tuning exceptions before enforcement.",
     date: "6 August 2026",
     readTime: "6 min read",
     content: `
@@ -266,6 +273,7 @@ The best DLP policy is not necessarily the strictest one. It is the one that pro
     slug: "azure-security-uplift-ai-ready-business",
     category: "Azure & AI Security",
     excerpt: "How to strengthen Azure security while preparing your organisation for AI workloads, Microsoft Copilot, agents and modern cloud applications.",
+    shortAnswer: "An Azure security uplift reviews identity, privileged access, Azure Policy, Defender for Cloud, network exposure, secrets, data and monitoring. The goal is to reduce material risk while creating a consistent foundation for cloud and AI workloads.",
     date: "31 August 2026",
     readTime: "11 min read",
     content: `
@@ -433,6 +441,7 @@ Build the foundation first. Then build the intelligence on top of it.
     slug: "ai-agents-cybersecurity-business-risk",
     category: "AI & Cybersecurity",
     excerpt: "AI agents can transform productivity, but they also introduce new identity, data, access and operational risks that businesses need to manage.",
+    shortAnswer: "AI agents introduce security risks around identity, permissions, data access, tool execution, prompt injection and monitoring. Businesses should give agents only the access they need, define ownership and add stronger controls to high-impact actions.",
     date: "31 August 2026",
     readTime: "11 min read",
     content: `
@@ -670,6 +679,7 @@ A well-designed agent is one that can do **the right things, for the right reaso
     slug: "why-cybersecurity-matters-business-leaders",
     category: "Cybersecurity",
     excerpt: "Cybersecurity is no longer just an IT issue. Learn why identity, data, cloud security and resilience matter to every modern business.",
+    shortAnswer: "For business leaders, cybersecurity is about protecting operations, data and resilience. The practical starting point is understanding critical assets, protecting identity, securing devices and cloud services, improving detection and ensuring important systems can be recovered.",
     date: "31 August 2026",
     readTime: "11 min read",
     content: `
